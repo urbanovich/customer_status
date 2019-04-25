@@ -25,7 +25,7 @@ class InstallSchema implements InstallSchemaInterface
         $installer->startSetup();
 
         /**
-         * Create table 'belvg_catalog_product_framer_frame'
+         * Create table 'company_customer_status'
          */
         $table = $installer->getConnection()->newTable(
           $installer->getTable('company_customer_status')
