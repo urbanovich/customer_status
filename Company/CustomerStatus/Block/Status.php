@@ -48,4 +48,20 @@ class Status extends Template
     {
         return json_encode($this->status->toOptionArray());
     }
+
+    public function getStatusName()
+    {
+        $statuses = $this->status->toOptionArray();
+        $data = $this->statusResource->getStatus($this->getCustomerId());
+
+        $name = '';
+        foreach ($statuses as $s) {
+            if ($s['value'] == $data['status']) {
+                $name = $s['label'];
+                break;
+            }
+        }
+
+        return $name;
+    }
 }

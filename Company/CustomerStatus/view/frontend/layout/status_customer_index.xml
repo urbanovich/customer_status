@@ -1,8 +1,12 @@
 <?xml version="1.0"?>
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column"
       xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <referenceContainer name="header.panel">
+        <block class="Company\CustomerStatus\Block\Status" name="status_customer_index"
+               template="Company_CustomerStatus::block_status.phtml"/>
+    </referenceContainer>
     <referenceContainer name="content">
         <block class="Company\CustomerStatus\Block\Status" name="status_customer_index"
-               template="Company_CustomerStatus::status.phtml"/>
+               template="Company_CustomerStatus::page_status.phtml"/>
     </referenceContainer>
 </page>
