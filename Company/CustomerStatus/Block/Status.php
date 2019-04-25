@@ -14,4 +14,20 @@ use Magento\Framework\View\Element\Template;
 class Status extends Template
 {
 
+    public function __construct(
+      \Magento\Framework\View\Element\Template\Context $context,
+      array $data = []
+    ) {
+        parent::__construct($context, $data);
+    }
+
+    public function getCustomerStatus()
+    {
+        return json_encode([]);
+    }
+
+    public function getStatuses()
+    {
+        return json_encode([]);
+    }
 }

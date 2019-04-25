@@ -5,4 +5,34 @@
  * Date: 25.4.19
  * Time: 20.52
  */
-
+?>
+<div id="status" data-bind="scope:'status'">
+    <!-- ko template: getTemplate() --><!-- /ko -->
+</div>
+<script type="text/x-magento-init">
+    {
+        "#status": {
+            "Magento_Ui/js/core/app": {
+                "components": {
+                    "status": {
+                        "component": "Company_CustomerStatus/js/status",
+                        "config": {
+                            "customer_status": <?= $this->getCustomerStatus(); ?>
+                            "statuses": <?= $this->getStatuses(); ?>
+                        },
+                        "children": {
+                            "errors": {
+                                "component": "Magento_Ui/js/view/messages",
+                                "sortOrder": 0,
+                                "displayArea": "messages",
+                                "config": {
+                                    "autoHideTimeOut": -1
+                                 }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+</script>

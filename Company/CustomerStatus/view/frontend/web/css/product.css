@@ -1,0 +1,38 @@
+.row {
+    /*display: inline-block;*/
+}
+
+#start .col-left, .col-right {
+    display: inline-block;
+}
+
+#start  .col-right {
+    vertical-align: top;
+    margin: 0 25px 0 25px;
+}
+
+#start  .col-right h4{
+    /*margin: 0 25px 0 25px;*/
+}
+
+#image_size .types select,
+#image_size .formats select,
+#image_size .thickness select,
+#image_size .mounts select {
+    width: 200px;
+}
+
+#image_size .size input {
+    width: 100px;
+}
+#image_size .mounts .one_mount .fields {
+    width: 200px;
+}
+
+#image_size .mounts .one_mount .fields input {
+    width: 50px;
+}
+
+#image_size .mounts .one_mount .fields .top {
+
+}
