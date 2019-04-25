@@ -2,5 +2,9 @@
     <!-- ko template: getTemplate() --><!-- /ko -->
 <!--/ko-->
 <div class="status">
-
+    <div class="types">
+        <label >Statuses:</label>
+        <select data-bind="options: status_list, optionsText: 'label', optionsValue: 'value', value: selected"></select>
+        <button data-bind="click: save(selected())">Save</button>
+    </div>
 </div>

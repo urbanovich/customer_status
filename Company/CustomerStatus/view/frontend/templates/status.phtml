@@ -17,8 +17,9 @@
                     "status": {
                         "component": "Company_CustomerStatus/js/status",
                         "config": {
-                            "customer_status": <?= $this->getCustomerStatus(); ?>
-                            "statuses": <?= $this->getStatuses(); ?>
+                            "customer_status": <?= $this->getCustomerStatus(); ?>,
+                            "statuses": <?= $this->getStatuses(); ?>,
+                            "customerId": <?= $this->getCustomerId(); ?>
                         },
                         "children": {
                             "errors": {

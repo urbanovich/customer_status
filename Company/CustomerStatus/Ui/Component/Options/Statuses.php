@@ -15,6 +15,7 @@ class Statuses implements \Magento\Framework\Data\OptionSourceInterface
     public function toOptionArray()
     {
         return [
+            ['value' => 'any', 'label' => __('Any')],
             ['value' => 'boss', 'label' => __('Boss')],
             ['value' => 'master', 'label' => __('Master')],
             ['value' => 'worker', 'label' => __('Worker')],
