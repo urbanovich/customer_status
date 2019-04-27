@@ -19,6 +19,8 @@ class Save extends Action
 
     protected $status;
 
+    protected $formKeyValidator;
+
     /**
      * Constructor
      *
@@ -28,10 +30,12 @@ class Save extends Action
     public function __construct(
         \Magento\Backend\App\Action\Context $context,
         \Magento\Framework\Controller\Result\JsonFactory $resultJsonFactory,
-        \Company\CustomerStatus\Model\StatusFactory $status
+        \Company\CustomerStatus\Model\StatusFactory $status,
+        \Magento\Framework\Data\Form\FormKey\Validator $formKeyValidator
     ) {
         $this->resultJsonFactory = $resultJsonFactory->create();
         $this->status = $status;
+        $this->formKeyValidator = $formKeyValidator;
         parent::__construct($context);
     }
 
@@ -43,14 +47,18 @@ class Save extends Action
      */
     public function execute()
     {
-        $data = $this->getRequest()->getParams();
         $success = false;
-        if (!empty($data)) {
-            $status = $this->status->create();
-            $status->setData($data);
-            $status->save();
+        if ($this->formKeyValidator->validate($this->getRequest())) {
+            $data = $this->getRequest()->getParams();
+            if (!empty($data)) {
+                $status = $this->status->create();
+                $status->setData($data);
+                $status->save();
 
-            $success = true;
+                $success = true;
+            }
+        } else {
+            $this->_redirect('status/customer/index');
         }
 
         return  $this->resultJsonFactory->setData(['success' => $success]);

@@ -12,6 +12,7 @@ define([
             customer_status: [],
             statuses: [],
             customerId: [],
+            formKey: "",
         },
 
         initialize: function () {
@@ -40,7 +41,7 @@ define([
                 $.ajax({
                     url: '/status/customer/save/',
                     type: 'POST',
-                    data: 'status=' + status + '&customer_id=' + this.customerId,
+                    data: 'status=' + status + '&customer_id=' + this.customerId + '&form_key=' + this.formKey,
                     dataType: 'json',
                     success: function (response) {
                         if (response.success) {

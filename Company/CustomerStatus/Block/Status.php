@@ -20,16 +20,20 @@ class Status extends Template
 
     protected $customerSession;
 
+    protected $formKey;
+
     public function __construct(
       \Magento\Framework\View\Element\Template\Context $context,
       \Company\CustomerStatus\Ui\Component\Options\Statuses $status,
       \Company\CustomerStatus\Model\ResourceModel\Status $statusResource,
       \Magento\Customer\Model\Session $customerSession,
+      \Magento\Framework\Data\Form\FormKey $formKey,
       array $data = []
     ) {
         $this->status = $status;
         $this->statusResource = $statusResource;
         $this->customerSession = $customerSession;
+        $this->formKey = $formKey;
         parent::__construct($context, $data);
     }
 
@@ -47,6 +51,11 @@ class Status extends Template
     public function getStatuses()
     {
         return json_encode($this->status->toOptionArray());
+    }
+
+    public function getFormKey()
+    {
+        return $this->formKey->getFormKey();
     }
 
     public function getStatusName()
