@@ -23,22 +23,26 @@ class Status extends Generic implements TabInterface
 
     protected $statuses;
 
+    protected $status;
+
     /**
      * @param \Magento\Backend\Block\Template\Context $context
-     * @param \Magento\Framework\Registry $registry
-     * @param array $data
+     * @param \Magento\Framework\Registry             $registry
+     * @param array                                   $data
      */
     public function __construct(
-        \Magento\Backend\Block\Template\Context $context,
-        \Magento\Framework\Registry $registry,
-        \Magento\Framework\Data\FormFactory $formFactory,
-        \Magento\Store\Model\System\Store $systemStore,
-        \Company\CustomerStatus\Ui\Component\Options\Statuses $statuses,
-        array $data = []
+      \Magento\Backend\Block\Template\Context $context,
+      \Magento\Framework\Registry $registry,
+      \Magento\Framework\Data\FormFactory $formFactory,
+      \Magento\Store\Model\System\Store $systemStore,
+      \Company\CustomerStatus\Ui\Component\Options\Statuses $statuses,
+      \Company\CustomerStatus\Model\ResourceModel\Status $status,
+      array $data = []
     ) {
         $this->_coreRegistry = $registry;
         $this->_systemStore = $systemStore;
         $this->statuses = $statuses;
+        $this->status = $status;
         parent::__construct($context, $registry, $formFactory, $data);
     }
 
@@ -97,20 +101,22 @@ class Status extends Generic implements TabInterface
         $form = $this->_formFactory->create();
         $form->setHtmlIdPrefix('customer_status_form');
 
-        $fieldset = $form->addFieldset('base_fieldset', ['legend' => __('Customer Status Information')]);
+        $fieldset = $form->addFieldset('base_fieldset',
+            ['legend' => __('Customer Status Information')]);
 
         $fieldset->addField(
-          'customer_status',
-          'select',
-          [
-            'name' => 'customer_status',
-            'data-form-part' => $this->getData('target_form'),
-            'label' => __('Customer Status'),
-            'title' => __('Customer Status'),
-            'values' => $this->statuses->toOptionArray(),
-          ]
+            'status',
+            'select',
+            [
+                'name'           => 'status',
+                'data-form-part' => $this->getData('target_form'),
+                'label'          => __('Customer Status'),
+                'title'          => __('Customer Status'),
+                'values'         => $this->statuses->toOptionArray(),
+            ]
         );
 
+        $form->setValues($this->status->getStatus($this->getCustomerId()));
         $this->setForm($form);
         return $this;
     }
